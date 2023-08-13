@@ -98,7 +98,7 @@ def create_user() -> str:
     return jsonify({'error': error_msg}), 400
 
 
-@app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/api/v1/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user(user_id: str = None) -> str:
     """ PUT /api/v1/users/:id
     Path parameter:
