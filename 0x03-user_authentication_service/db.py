@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""DB module
+"""DB Module
 """
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm.session import Session
-
-from user import Base
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
+from user import Base, User
 
 
 class DB:
@@ -14,16 +15,16 @@ class DB:
     """
 
     def __init__(self):
-        """Initialize a new DB instance
+        """Initializes a new DB instance
         """
-        self._engine = create_engine("sqlite:///a.db", echo=True)
+        self._engine = create_engine("sqlite:///a.db", echo=False)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
         self.__session = None
 
     @property
     def _session(self):
-        """privat Memoized session object
+        """Private memoized session method (object)
         Never used outside DB class
         """
         if self.__session is None:
@@ -32,7 +33,8 @@ class DB:
         return self.__session
 
     def add_user(self, email: str, hashed_password: str) -> User:
-        """Add and return a new user
+        """Add new user to database
+        Returns a User object
         """
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
