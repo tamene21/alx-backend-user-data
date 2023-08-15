@@ -58,7 +58,7 @@ class DB:
         """Return a user_id
         """
         update_user = self.find_user_by(id=user_id)
-        user_keys = ['id', 'email', 'hash_password', 'session_id',
+        user_keys = ['id', 'email', 'hashed_password', 'session_id',
                      'reset_token']
         for key, value in kwargs.items():
             if key in user_keys:
