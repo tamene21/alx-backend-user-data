@@ -53,3 +53,16 @@ class DB:
         if result is None:
             raise NoResultFound
         return result
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Return a user_id
+        """
+        update_user = self.find_user_by(id=user_id)
+        user_keys = ['id', 'email', 'hash_password', 'session_id',
+                     'reset_tokken']
+        for key, value in kwargs.items():
+            if key in user_keys:
+                setattr(update_user, key, value)
+            else:
+                raise ValueError
+        self._session.commit()
