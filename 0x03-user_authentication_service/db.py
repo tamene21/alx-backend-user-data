@@ -23,7 +23,8 @@ class DB:
 
     @property
     def _session(self) -> Session:
-        """Memoized session object
+        """privat Memoized session object
+        Never used outside DB class
         """
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)
