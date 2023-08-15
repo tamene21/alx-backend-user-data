@@ -13,7 +13,7 @@ class DB:
     """DB class
     """
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Initialize a new DB instance
         """
         self._engine = create_engine("sqlite:///a.db", echo=True)
@@ -22,7 +22,7 @@ class DB:
         self.__session = None
 
     @property
-    def _session(self) -> Session:
+    def _session(self):
         """privat Memoized session object
         Never used outside DB class
         """
