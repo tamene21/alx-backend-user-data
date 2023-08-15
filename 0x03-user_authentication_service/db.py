@@ -59,7 +59,7 @@ class DB:
         """
         update_user = self.find_user_by(id=user_id)
         user_keys = ['id', 'email', 'hash_password', 'session_id',
-                     'reset_tokken']
+                     'reset_token']
         for key, value in kwargs.items():
             if key in user_keys:
                 setattr(update_user, key, value)
