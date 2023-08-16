@@ -90,7 +90,7 @@ def profile() -> str:
     return jsonify(msg), 200
 
 
-@app.route('/reset_password', methods=['GET'])
+@app.route('/reset_password', methods=['POST'])
 def reset_password() -> str:
     """Get a password reset token
     """
