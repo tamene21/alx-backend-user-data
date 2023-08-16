@@ -58,7 +58,7 @@ def login() -> str:
     return response
 
 
-@app.route('/sessions', method=['DELETE'], strict_slashes=False)
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
 def logout() -> str:
     """Find a user with a requeestion session_id
     """
