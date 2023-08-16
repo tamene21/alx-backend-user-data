@@ -95,7 +95,7 @@ def get_reset_password_token() -> str:
     """Get a password reset token
     """
     try:
-        email = request.form[email]
+        email = request.form['email']
     except KeyError:
         abort(403)
 
