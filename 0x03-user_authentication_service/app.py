@@ -45,10 +45,10 @@ def login() -> str:
     except KeyError:
         abort(400)
 
-    if not Auth.valid_login(email, password):
+    if not AUTH.valid_login(email, password):
         abort(401)
 
-    session_id = Auth.create_session(email)
+    session_id = AUTH.create_session(email)
 
     msg = ['email': email, 'message': 'loged in']
     response = jsonify(msg)
