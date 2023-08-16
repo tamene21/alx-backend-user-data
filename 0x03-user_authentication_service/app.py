@@ -109,5 +109,29 @@ def reset_password() -> str:
     return jsonify(msg), 200
 
 
+@app.route('/reset_password', methods=['PUT'])
+def update_password() -> str:
+    """Password update with reset token
+    Return:
+        -403 =  not valid reset token
+        -400 = bad request
+        -200 = valid with JSON return
+    """
+    try:
+        email = request.form['email']
+        reset_token = request.form['reset_token']
+        new_password = request.form['new_password']
+    except KeyError:
+        abort(400)
+
+    try:
+        AUTH.update_password(reset_token, new_password)
+    except ValueError:
+        abort(403)
+
+    msg = {"email": email, "message": "Password updated"}
+    return jsonify(msg), 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5000")
