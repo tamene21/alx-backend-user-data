@@ -91,7 +91,7 @@ def profile() -> str:
 
 
 @app.route('/reset_password', methods=['GET'])
-def get_reset_password_token() -> str:
+def reset_password() -> str:
     """Get a password reset token
     """
     try:
