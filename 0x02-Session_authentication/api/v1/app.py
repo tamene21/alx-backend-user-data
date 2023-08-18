@@ -60,9 +60,6 @@ def before_request() -> str:
             if request.current_user is None:
                 abort(403)
 
-                      
-            
-
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
